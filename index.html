@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Quote Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Your Motivational Quote!</h1>
+        <p>Select a background and click the button to generate a custom quote image.</p>
+        <form id="quoteForm">
+            <label for="background">Choose a background:</label>
+            <select id="background" name="background">
+                <option value="nature">Nature</option>
+                <option value="cityscape">Cityscape</option>
+                <option value="sunset">Sunset</option>
+            </select>
+            <button type="button" id="generateButton">Generate Quote</button>
+        </form>
+        <div id="result">
+            <img id="quoteImage" src="" style="display:none; max-width:100%; height:auto;" alt="Generated Motivational Quote Image">
+            <div id="loading" style="display: none;">Generating your quote...</div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

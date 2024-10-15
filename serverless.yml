@@ -1,0 +1,33 @@
+service: motivational-quote-generator
+
+provider:
+  name: aws
+  runtime: nodejs18.x  # Use Node.js 18 runtime
+  region: us-east-1
+  environment:
+    BUCKET_NAME: ${self:custom.bucketName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+      Resource: arn:aws:s3:::${self:custom.bucketName}/*
+
+functions:
+  generateQuoteImage:
+    handler: handler.generateQuoteImage
+    events:
+      - http:
+          path: quotes
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    QuoteImagesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucketName}
+
+custom:
+  bucketName: motivational-quotes-${sls:stage}
